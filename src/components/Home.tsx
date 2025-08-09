@@ -740,35 +740,50 @@ const Home = () => {
             <div className="animate-on-scroll">
               <h3 className="text-2xl font-bold mb-8 text-slate-800">Get In Touch</h3>
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-full">
-                    <Instagram className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-slate-800">Follow Us</h4>
-                    <p className="text-slate-600">@deamelectric</p>
-                  </div>
+              <a 
+                href="https://www.instagram.com/deamelectric/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start space-x-4 group hover:bg-blue-50 p-4 rounded-xl transition-all duration-300"
+              >
+                <div className="bg-blue-100 p-3 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+                <Instagram className="w-6 h-6 text-blue-600" />
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-full">
-                    <Linkedin className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-slate-800">Connect</h4>
-                    <p className="text-slate-600">DEAM Studio</p>
-                  </div>
+                <div>
+                <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">Follow Us</h4>
+                <p className="text-slate-600">@deamelectric</p>
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-full">
-                    <Github className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-slate-800">Collaborate</h4>
-                    <p className="text-slate-600">Open Source Projects</p>
-                  </div>
+              </a>
+              
+              <a 
+                href="https://www.linkedin.com/company/deam-studio/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start space-x-4 group hover:bg-blue-50 p-4 rounded-xl transition-all duration-300"
+              >
+                <div className="bg-blue-100 p-3 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+                <Linkedin className="w-6 h-6 text-blue-600" />
                 </div>
+                <div>
+                <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">Connect</h4>
+                <p className="text-slate-600">DEAM Studio</p>
+                </div>
+              </a>
+              
+              <a 
+                href="https://github.com/deam-team" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start space-x-4 group hover:bg-blue-50 p-4 rounded-xl transition-all duration-300"
+              >
+                <div className="bg-blue-100 p-3 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+                <Github className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">Collaborate</h4>
+                <p className="text-slate-600">Open Source Projects</p>
+                </div>
+              </a>
               </div>
             </div>
 
