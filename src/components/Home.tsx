@@ -999,7 +999,7 @@ const Home = () => {
                 <a href="#features" className="block text-slate-300 hover:text-white transition-colors duration-300">Features</a>
                 <a href="#about" className="block text-slate-300 hover:text-white transition-colors duration-300">About</a>
                 <a href="#gallery" className="block text-slate-300 hover:text-white transition-colors duration-300">Gallery</a>
-                <a href="#testimonials" className="block text-slate-300 hover:text-white transition-colors duration-300">Testimonials</a>
+                <a href="#testimonials" className="block text-slate-300 hover:text-white transition-colors duration-300">Portfolio</a>
               </div>
             </div>
 
