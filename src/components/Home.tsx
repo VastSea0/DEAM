@@ -12,7 +12,10 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Star
+  Star,
+  Battery,
+  Weight,
+  Award
 } from 'lucide-react';
 import ImageWithFallback from './ImageWithFallback';
 
@@ -22,7 +25,12 @@ const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentAboutImage, setCurrentAboutImage] = useState(0);
   const [isImageChanging, setIsImageChanging] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const nextCar = () => setCurrentIndex((prev) => (prev + 1) % cars.length);
+  const prevCar = () => setCurrentIndex((prev) => (prev === 0 ? cars.length - 1 : prev - 1));
+
 
   // About section images
   const aboutImages = [
@@ -53,6 +61,50 @@ const Home = () => {
       content: "DEAM represents the next generation of Turkish tech talent. Their vision and execution are truly remarkable.",
       rating: 5
     }
+  ];
+
+  // Carousel state ve veri
+  const cars = [
+    {
+      id: 0,
+      name: 'Naima',
+      image: '/assets/cars/cars0.jpeg',
+      achievement: 'Teknofest 2021 Finalist',
+      maxSpeed: '60 km/h',
+      batteryCapacity: '2.5 kWh',
+      weight: '180 kg',
+      description: 'Our pioneering first prototype that marked the beginning of our electric vehicle journey.',
+    },
+    {
+      id: 1,
+      name: 'Sezgin',
+      image: '/assets/cars/cars1.png',
+      achievement: 'Teknofest 2022 Finalist',
+      maxSpeed: '70 km/h',
+      batteryCapacity: '3.2 kWh',
+      weight: '170 kg',
+      description: 'Enhanced efficiency model with improved performance metrics and refined engineering.',
+    },
+    {
+      id: 2,
+      name: 'Umay',
+      image: '/assets/cars/cars2.jpeg',
+      achievement: 'Teknofest 2023 Finalist',
+      maxSpeed: '80 km/h',
+      batteryCapacity: '3.8 kWh',
+      weight: '160 kg',
+      description: 'Advanced design iteration featuring cutting-edge technology and superior functionality.',
+    },
+    {
+      id: 3,
+      name: 'Umay YC-01',
+      image: '/assets/cars/cars3.jpeg',
+      achievement: 'Teknofest 2024 Finalist',
+      maxSpeed: '90 km/h',
+      batteryCapacity: '4.5 kWh',
+      weight: '155 kg',
+      description: 'Latest innovation milestone representing the pinnacle of our engineering excellence.',
+    },
   ];
 
   useEffect(() => {
@@ -135,7 +187,7 @@ const Home = () => {
       setIsImageChanging(false);
     }, 800); // Complete animation duration
   };
-
+ 
   // Features data
   const features = [
     {
@@ -639,62 +691,7 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Featured Cars Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {[
-              { name: 'Naima', image: '/assets/cars/cars0.jpeg', year: '2021', description: 'Our pioneering first prototype that marked the beginning of our electric vehicle journey.', specs: ['First Generation', 'Prototype Phase', 'Learning Foundation'] },
-              { name: 'Sezgin', image: '/assets/cars/cars1.png', year: '2022', description: 'Enhanced efficiency model with improved performance metrics and refined engineering.', specs: ['Improved Efficiency', 'Better Performance', 'Enhanced Design'] },
-              { name: 'Umay', image: '/assets/cars/cars2.jpeg', year: '2023', description: 'Advanced design iteration featuring cutting-edge technology and superior functionality.', specs: ['Advanced Technology', 'Superior Design', 'Enhanced Safety'] },
-              { name: 'Umay YC-01', image: '/assets/cars/cars3.jpeg', year: '2024', description: 'Latest innovation milestone representing the pinnacle of our engineering excellence.', specs: ['Latest Innovation', 'Peak Performance', 'Competition Ready'] }
-            ].map((car, index) => (
-              <div key={index} className="animate-on-scroll group">
-                <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 overflow-hidden border border-slate-100 group-hover:transform group-hover:scale-[1.02]">
-                  {/* Car Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <ImageWithFallback 
-                      src={car.image} 
-                      alt={car.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    {/* Year Badge */}
-                    <div className="absolute top-6 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                      {car.year}
-                    </div>
-                    {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                  
-                  {/* Card Content */}
-                  <div className="p-8">
-                    {/* Car Name */}
-                    <h3 className="text-3xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                      {car.name}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className="text-slate-600 leading-relaxed mb-6 text-lg">
-                      {car.description}
-                    </p>
-                    
-                    {/* Specifications */}
-                    <div className="space-y-2 mb-6">
-                      {car.specs.map((spec, specIndex) => (
-                        <div key={specIndex} className="flex items-center space-x-3">
-                          <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-                          <span className="text-slate-700 font-medium">{spec}</span>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* Learn More Button */}
-                    <button className="w-full bg-gradient-to-r from-slate-100 to-slate-200 hover:from-blue-600 hover:to-purple-600 text-slate-700 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 border border-slate-200 hover:border-transparent hover:shadow-lg">
-                      Learn More About {car.name}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+    
 
           {/* Gallery Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -720,8 +717,150 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-     
+      {/* Cars Carousel Section */}
+      <section id="cars" className="py-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Cars
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Discover our evolution in automotive excellence through four generations of innovative vehicles
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Navigation buttons */}
+            <button
+              onClick={prevCar}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 bg-white hover:bg-gray-50 text-gray-700 hover:text-blue-800 p-3 rounded-full shadow-lg transition-all duration-200 border border-gray-200"
+              aria-label="Previous car"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            <button
+              onClick={nextCar}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 bg-white hover:bg-gray-50 text-gray-700 hover:text-blue-800 p-3 rounded-full shadow-lg transition-all duration-200 border border-gray-200"
+              aria-label="Next car"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+
+            {/* Cars display */}
+            <div className="flex justify-center items-center relative" style={{ height: '600px' }}>
+              {cars.map((car, index) => {
+                const position = (index - currentIndex + cars.length) % cars.length;
+                let translateX = 0;
+                let opacity = 0.2;
+                let scale = 0.8;
+                let zIndex = 0;
+
+                if (position === 0) {
+                  // Current car - center
+                  translateX = 0;
+                  opacity = 1;
+                  scale = 1;
+                  zIndex = 20;
+                } else if (position === 1) {
+                  // Next car - right side, barely visible
+                  translateX = 85;
+                  opacity = 0.3;
+                  scale = 0.85;
+                  zIndex = 10;
+                } else if (position === cars.length - 1) {
+                  // Previous car - left side, barely visible
+                  translateX = -85;
+                  opacity = 0.3;
+                  scale = 0.85;
+                  zIndex = 10;
+                } else {
+                  // Hidden cars
+                  translateX = position < cars.length / 2 ? 200 : -200;
+                  opacity = 0;
+                  scale = 0.7;
+                  zIndex = 0;
+                }
+
+                return (
+                  <div
+                    key={car.id}
+                    className="absolute transition-all duration-500 ease-out"
+                    style={{
+                      transform: `translateX(${translateX}%) scale(${scale})`,
+                      opacity,
+                      zIndex,
+                      width: '600px',
+                      maxWidth: '90vw'
+                    }}
+                  >
+                    <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                      <div 
+                        className="h-64 bg-cover bg-center relative"
+                        style={{ backgroundImage: `url('${car.image}')` }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                        <div className="absolute bottom-4 left-6 right-6">
+                          <h3 className="font-bold text-2xl mb-2 text-white">{car.name}</h3>
+                          <div className="flex items-center text-orange-400 mb-3">
+                            <Award className="h-5 w-5 mr-2" />
+                            <span className="text-sm font-medium">{car.achievement}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="p-6">
+                        <div className="grid grid-cols-3 gap-4 mb-4">
+                          <div className="text-center">
+                            <div className="flex items-center justify-center text-blue-600 mb-1">
+                              <Zap className="h-5 w-5" />
+                            </div>
+                            <div className="text-sm font-semibold text-gray-900">{car.maxSpeed}</div>
+                            <div className="text-xs text-gray-500">Max Speed</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="flex items-center justify-center text-green-600 mb-1">
+                              <Battery className="h-5 w-5" />
+                            </div>
+                            <div className="text-sm font-semibold text-gray-900">{car.batteryCapacity}</div>
+                            <div className="text-xs text-gray-500">Battery</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="flex items-center justify-center text-purple-600 mb-1">
+                              <Weight className="h-5 w-5" />
+                            </div>
+                            <div className="text-sm font-semibold text-gray-900">{car.weight}</div>
+                            <div className="text-xs text-gray-500">Weight</div>
+                          </div>
+                        </div>
+
+                        <div className="border-t border-gray-100 pt-4">
+                          <p className="text-sm text-gray-600 leading-relaxed">
+                            {car.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Indicators */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {cars.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                    index === currentIndex ? 'bg-blue-800' : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to car ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 lg:px-12 bg-gradient-to-br from-slate-50 to-blue-50">
